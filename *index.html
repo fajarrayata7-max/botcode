@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mau Balikan Ga?</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .card {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            max-width: 400px;
+            width: 90%;
+            z-index: 10;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 30px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            position: relative;
+            min-height: 50px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s ease, background-color 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #btnYes {
+            background-color: #2ecc71;
+            color: white;
+        }
+
+        #btnYes:hover {
+            background-color: #27ae60;
+            transform: scale(1.05);
+        }
+
+        #btnNo {
+            background-color: #e74c3c;
+            color: white;
+            position: relative; /* Agar bisa dipindah-pindah dengan JS */
+        }
+
+        #message {
+            margin-top: 25px;
+            font-size: 18px;
+            font-weight: bold;
+            color: #e74c3c;
+            min-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>Mau Balikan Ga Keni Anggura?</h1>
+        <div class="button-container" id="btnContainer">
+            <button id="btnYes">MAU BANGET</button>
+            <button id="btnNo">Engga</button>
+        </div>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const message = document.getElementById('message');
+
+        // Fungsi jika tombol "Yes" (MAU BANGET) diklik
+        btnYes.addEventListener('click', function() {
+            message.style.color = "#27ae60";
+            message.innerHTML = "MAAPIN bang Fajar  Yaaaa :( kenii anggura tercantik se NKRI :* :* :*";
+            // Ubah posisi tombol No kembali normal jika mau
+            btnNo.style.position = 'relative';
+            btnNo.style.left = '0px';
+            btnNo.style.top = '0px';
+        });
+
+        // Fungsi untuk memindahkan tombol "No" (Engga) secara random
+        function moveButtonRandomly() {
+            // Ubah posisi menjadi absolute agar bisa keluar dari posisi normal
+            btnNo.style.position = 'fixed';
+
+            // Dapatkan ukuran layar dan tombol
+            const maxX = window.innerWidth - btnNo.offsetWidth - 50;
+            const maxY = window.innerHeight - btnNo.offsetHeight - 50;
+
+            // Buat koordinat random baru
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+
+            // Terapkan posisi baru
+            btnNo.style.left = randomX + 'px';
+            btnNo.style.top = randomY + 'px';
+
+            // Munculkan pesan
+            message.style.color = "#e74c3c";
+            message.innerHTML = "HEHEHEHEH GA BOLEH NOLAK YAA";
+        }
+
+        // Pindahkan tombol saat di-hover (desktop) atau di-klik (mobile)
+        btnNo.addEventListener('mouseover', moveButtonRandomly);
+        btnNo.addEventListener('click', moveButtonRandomly);
+    </script>
+
+</body>
+</html>
